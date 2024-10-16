@@ -8,4 +8,5 @@ class PD_Controller:
         error = reference - observation
         action = self.Kp * error + self.Kd * (error - self.previous_error)
 
+        self.previous_error = error
         return action

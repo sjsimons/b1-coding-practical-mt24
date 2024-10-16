@@ -3,13 +3,14 @@ from dataclasses import dataclass
 import numpy as np
 import matplotlib.pyplot as plt
 from .terrain import generate_reference_and_limits
+import pandas as pd
 
 class Submarine:
     def __init__(self):
 
         self.mass = 1
         self.drag = 0.1
-        self.actuator_gain = 1
+        self.actuator_gain = 1  
 
         self.dt = 1 # Time step for discrete time simulation
 
@@ -75,8 +76,13 @@ class Mission:
 
     @classmethod
     def from_csv(cls, file_name: str):
-        # You are required to implement this method
-        pass
+        mission_data = pd.read_csv(file_name)
+
+        Mission.reference = mission_data['reference']
+        Mission.cave_height = mission_data['cave_height']
+        Mission.cave_depth = mission_data['cave_depth']
+
+        return Mission
 
 
 class ClosedLoop:

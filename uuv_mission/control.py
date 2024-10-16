@@ -1,4 +1,5 @@
 class PD_Controller:
+    """Simple PD controller implementation for uuv submarine control scenario with adjustable gain"""
     def __init__(self, Kp: float, Kd: float):
         self.Kp = Kp
         self.Kd = Kd

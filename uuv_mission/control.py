@@ -4,4 +4,8 @@ class PD_Controller:
         self.Kd = Kd
         self.previous_error = 0 # used to calculate derivative error
     
-    
+    def response(self, observation: float, reference: float):
+        error = reference - observation
+        action = self.Kp * error + self.Kd * (error - self.previous_error)
+
+        return action
